@@ -1,45 +1,12 @@
 <?php
-/*
- * ==========================================================
- * DATA MAHASISWA (Contoh Sederhana)
- * ==========================================================
- *
- * Dalam aplikasi nyata, data ini biasanya diambil dari database
- * (misalnya MySQL) menggunakan query SELECT.
- *
- * $koneksi = mysqli_connect("localhost", "root", "", "db_kampus");
- * $query = mysqli_query($koneksi, "SELECT * FROM mahasiswa");
- * $mahasiswa = mysqli_fetch_all($query, MYSQLI_ASSOC);
- *
- */
+require 'koneksi.php';
+$query_sql = "SELECT nim, nama, jurusan, semester FROM mahasiswa";
+$hasil = mysqli_query($koneksi, $query_sql);
 
-// Untuk contoh ini, kita gunakan data array PHP sederhana (data dummy)
-$mahasiswa = [
-    [
-        "nim" => "2310511001",
-        "nama" => "Andi Saputra",
-        "jurusan" => "Teknik Informatika",
-        "semester" => 3
-    ],
-    [
-        "nim" => "2310511002",
-        "nama" => "Budi Gunawan",
-        "jurusan" => "Sistem Informasi",
-        "semester" => 3
-    ],
-    [
-        "nim" => "2210412005",
-        "nama" => "Citra Lestari",
-        "jurusan" => "Manajemen Bisnis",
-        "semester" => 5
-    ],
-    [
-        "nim" => "2310511004",
-        "nama" => "Dewi Anggraini",
-        "jurusan" => "Teknik Informatika",
-        "semester" => 3
-    ]
-];
+$mahasiswa = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
+
+mysqli_close($koneksi);
+
 ?>
 
 <!DOCTYPE html>
@@ -48,17 +15,10 @@ $mahasiswa = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Mahasiswa - KSI2025</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Sedikit style tambahan */
-        body {
-            background-color: #f8f9fa;
-        }
-        .container {
-            padding-top: 40px;
-        }
+        body { background-color: #f8f9fa; }
+        .container { padding-top: 40px; }
     </style>
 </head>
 <body>
@@ -66,7 +26,7 @@ $mahasiswa = [
     <div class="container">
         <div class="card shadow-sm">
             <div class="card-header bg-dark text-white">
-                <h1 class="h4 mb-0">Data Mahasiswa (KSI2025)</h1>
+                <h1 class="h4 mb-0">Data Mahasiswa (dari Database)</h1>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -107,6 +67,6 @@ $mahasiswa = [
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
