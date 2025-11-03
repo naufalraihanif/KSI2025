@@ -1,10 +1,17 @@
 <?php
+// index.php
+
+// 1. Sertakan file koneksi (DARI 'KoneksiDatabase')
 require 'koneksi.php';
+
+// 2. Buat query untuk mengambil data (DARI 'KoneksiDatabase')
 $query_sql = "SELECT nim, nama, jurusan, semester FROM mahasiswa";
 $hasil = mysqli_query($koneksi, $query_sql);
 
+// 3. Ubah hasil query menjadi array associative (DARI 'KoneksiDatabase')
 $mahasiswa = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
 
+// 4. Tutup koneksi (opsional di akhir script)
 mysqli_close($koneksi);
 
 ?>
@@ -29,6 +36,9 @@ mysqli_close($koneksi);
                 <h1 class="h4 mb-0">Data Mahasiswa (dari Database)</h1>
             </div>
             <div class="card-body">
+                
+                <a href="tambah.php" class="btn btn-primary mb-3">Tambah Data Mahasiswa</a>
+                
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-bordered">
                         <thead class="table-light">
